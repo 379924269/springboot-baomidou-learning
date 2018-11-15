@@ -1,0 +1,174 @@
+package ${package.Entity};
+
+#foreach($pkg in ${table.importPackages})
+import ${pkg};
+#end
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
+
+import java.io.*;
+
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlAttribute;
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlRootElement;
+#if(${entityLombokModel})
+import com.baomidou.mybatisplus.enums.FieldFill;
+
+import lombok.Data;
+import lombok.experimental.Accessors;
+
+import java.util.Date;
+#end
+
+/**
+ * <p>
+ * $!{table.comment}
+ * </p>
+ *
+ * @author ${author}
+ * @since ${date}
+ */
+#if(${entityLombokModel})
+@Data
+@Accessors(chain = true)
+#end
+#if(${table.convert})
+@TableName("${table.name}" )
+#end
+#if(${superEntityClass})
+
+@XmlRootElement(name = "${table.entityPath}" )
+@XmlAccessorType(XmlAccessType.NONE)
+@ApiModel(value = "${table.entityPath}" , description = "${table.comment}" )
+public class ${entity} extends ${superEntityClass}#if(${activeRecord})<${entity}>#end {
+#elseif(${activeRecord})
+@XmlRootElement(name = "${table.entityPath}" )
+@XmlAccessorType(XmlAccessType.NONE)
+@ApiModel(value = "${table.entityPath}" , description = "${table.comment}" )
+public class ${entity} extends Model<${entity}> {
+#else
+@XmlRootElement(name = "${table.entityPath}" )
+@XmlAccessorType(XmlAccessType.NONE)
+@ApiModel(value = "${table.entityPath}" , description = "${table.comment}" )
+public class ${entity} implements Serializable{
+#end
+
+private static final long serialVersionUID=1L;
+
+#foreach($field in ${table.fields})    #if(${field.keyFlag})
+    #set($keyPropertyName=${field.propertyName})
+#end
+    #if("$!field.comment" != "")
+    /**
+     * ${field.comment}
+     */
+    #end
+    #if(${field.keyFlag})
+        #if(${field.keyIdentityFlag})
+        @TableId(value = "${field.name}" , type = IdType.AUTO)
+        #elseif(${field.convert})
+        @TableId("${field.name}" )
+        #end
+    #elseif(${field.fill})
+        #if(${field.convert})
+        @TableField(value = "${field.name}" , fill = FieldFill.${field.fill})
+        #else
+        @TableField(fill = FieldFill.${field.fill})
+        #end
+    #elseif(${field.convert})
+    @TableField("${field.name}" )
+    #end
+    #if(${logicDeleteFieldName}==${field.name})
+    @TableLogic
+    #end
+
+@XmlAttribute
+@ApiModelProperty(value = "${field.comment}" , dataType = "${field.propertyType}" )
+private ${field.propertyType} ${field.propertyName};
+#end
+
+#*弄一个无参数构造器*#
+public ${entity}(){
+        }
+
+#*弄一个带全部参数的构造器(出去id)*#
+#foreach($field in ${table.fields})
+    #set($lastField= ${field.propertyName})
+#end
+
+public ${entity}(
+    #foreach($field in ${table.fields})
+        #if( ${field.propertyName.equals("id")})
+        #else
+            ${field.propertyType} ${field.propertyName}
+            #if(${lastField} != ${field.propertyName})
+                    ,
+            #end
+        #end
+    #end
+        ){
+    #foreach($field in ${table.fields})
+        #if( ${field.propertyName.equals("id")})
+        #else
+                this.${field.propertyName} = ${field.propertyName};
+        #end
+    #end
+        }
+
+#if(!${entityLombokModel})
+    #foreach($field in ${table.fields})
+        #if(${field.propertyType.equals("Boolean")})
+            #set($getprefix="is")
+        #else
+            #set($getprefix="get")
+        #end
+
+    public ${field.propertyType} ${getprefix}${field.capitalName}(){
+            return ${field.propertyName};
+            }
+
+        #if(${entityBuilderModel})
+        public ${entity} set${field.capitalName}(${field.propertyType} ${field.propertyName}){
+        #else
+        public void set${field.capitalName}(${field.propertyType} ${field.propertyName}) {
+        #end
+            this.${field.propertyName} = ${field.propertyName};
+        #if(${entityBuilderModel})
+                return this;
+        #end
+            }
+    #end
+#end
+
+#if(${entityColumnConstant})
+    #foreach($field in ${table.fields})
+    public static final String ${field.name.toUpperCase()} ="${field.name}";
+
+    #end
+#end
+#if(${activeRecord})
+@Override
+protected Serializable pkVal(){
+    #if(${keyPropertyName})
+            return this.${keyPropertyName};
+    #else
+            return this.id;
+    #end
+        }
+
+#end
+@Override
+public String toString(){
+        return"${entity}{"+
+    #foreach($field in ${table.fields})
+        #if($!{velocityCount}==1)
+                "${field.propertyName}="+ ${field.propertyName} +
+        #else
+                ", ${field.propertyName}="+ ${field.propertyName} +
+        #end
+    #end
+        "}";
+        }
+        }

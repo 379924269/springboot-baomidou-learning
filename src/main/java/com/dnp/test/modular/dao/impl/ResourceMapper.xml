@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dnp.test.modular.dao.ResourceMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.dnp.test.modular.entity.Resource">
+        <id column="id" property="id" />
+        <result column="name" property="name" />
+        <result column="url" property="url" />
+        <result column="open_mode" property="openMode" />
+        <result column="description" property="description" />
+        <result column="icon" property="icon" />
+        <result column="pid" property="pid" />
+        <result column="seq" property="seq" />
+        <result column="status" property="status" />
+        <result column="opened" property="opened" />
+        <result column="resource_type" property="resourceType" />
+        <result column="create_time" property="createTime" />
+        <result column="method" property="method" />
+    </resultMap>
+
+</mapper>

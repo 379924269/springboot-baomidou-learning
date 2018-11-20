@@ -21,7 +21,7 @@ import java.util.Map;
  */
 public class MyBatisPlusGenerator {
     /*文件生成存放的目录，一般生成到我们自己的项目下*/
-    private static String OUT_PUT_DIR = "E:\\springboot-learning-project\\baomidou-test\\src\\main\\java";
+    private static String OUT_PUT_DIR = "E:\\my-git-project\\springboot-baomidou-learning\\src\\main\\java";
     /*包名,controller、entity、dao、service到的包*/
     private static String PACKAGE_NAME = "com.dnp.test.modular";
     /*作者*/

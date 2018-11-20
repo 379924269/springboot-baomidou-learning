@@ -1,7 +1,7 @@
 package com.dnp.test.modular.dao;
 
-import com.dnp.test.modular.entity.User;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import com.dnp.test.modular.entity.User;
 
 /**
  * <p>

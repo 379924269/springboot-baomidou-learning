@@ -1,9 +1,9 @@
 package com.dnp.test.modular.service.impl;
 
-import com.dnp.test.modular.entity.Resource;
-import com.dnp.test.modular.dao.ResourceMapper;
-import com.dnp.test.modular.service.ResourceService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import com.dnp.test.modular.dao.ResourceMapper;
+import com.dnp.test.modular.entity.Resource;
+import com.dnp.test.modular.service.ResourceService;
 import org.springframework.stereotype.Service;
 
 /**

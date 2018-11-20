@@ -4,18 +4,18 @@
 
     <!-- 通用查询映射结果 -->
     <resultMap id="BaseResultMap" type="com.dnp.test.modular.entity.User">
-        <id column="id" property="id" />
-        <result column="login_name" property="loginName" />
-        <result column="name" property="name" />
-        <result column="password" property="password" />
-        <result column="salt" property="salt" />
-        <result column="sex" property="sex" />
-        <result column="age" property="age" />
-        <result column="phone" property="phone" />
-        <result column="user_type" property="userType" />
-        <result column="status" property="status" />
-        <result column="organization_id" property="organizationId" />
-        <result column="create_time" property="createTime" />
+        <id column="id" property="id"/>
+        <result column="login_name" property="loginName"/>
+        <result column="name" property="name"/>
+        <result column="password" property="password"/>
+        <result column="salt" property="salt"/>
+        <result column="sex" property="sex"/>
+        <result column="age" property="age"/>
+        <result column="phone" property="phone"/>
+        <result column="user_type" property="userType"/>
+        <result column="status" property="status"/>
+        <result column="organization_id" property="organizationId"/>
+        <result column="create_time" property="createTime"/>
     </resultMap>
 
 </mapper>

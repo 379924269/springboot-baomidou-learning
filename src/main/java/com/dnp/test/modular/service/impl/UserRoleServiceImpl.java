@@ -1,9 +1,9 @@
 package com.dnp.test.modular.service.impl;
 
-import com.dnp.test.modular.entity.UserRole;
-import com.dnp.test.modular.dao.UserRoleMapper;
-import com.dnp.test.modular.service.UserRoleService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import com.dnp.test.modular.dao.UserRoleMapper;
+import com.dnp.test.modular.entity.UserRole;
+import com.dnp.test.modular.service.UserRoleService;
 import org.springframework.stereotype.Service;
 
 /**

@@ -4,14 +4,14 @@
 
     <!-- 通用查询映射结果 -->
     <resultMap id="BaseResultMap" type="com.dnp.test.modular.entity.Organization">
-        <id column="id" property="id" />
-        <result column="name" property="name" />
-        <result column="address" property="address" />
-        <result column="code" property="code" />
-        <result column="icon" property="icon" />
-        <result column="pid" property="pid" />
-        <result column="seq" property="seq" />
-        <result column="create_time" property="createTime" />
+        <id column="id" property="id"/>
+        <result column="name" property="name"/>
+        <result column="address" property="address"/>
+        <result column="code" property="code"/>
+        <result column="icon" property="icon"/>
+        <result column="pid" property="pid"/>
+        <result column="seq" property="seq"/>
+        <result column="create_time" property="createTime"/>
     </resultMap>
 
 </mapper>

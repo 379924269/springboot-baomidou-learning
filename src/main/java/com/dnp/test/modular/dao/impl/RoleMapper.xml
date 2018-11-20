@@ -4,11 +4,11 @@
 
     <!-- 通用查询映射结果 -->
     <resultMap id="BaseResultMap" type="com.dnp.test.modular.entity.Role">
-        <id column="id" property="id" />
-        <result column="name" property="name" />
-        <result column="seq" property="seq" />
-        <result column="description" property="description" />
-        <result column="status" property="status" />
+        <id column="id" property="id"/>
+        <result column="name" property="name"/>
+        <result column="seq" property="seq"/>
+        <result column="description" property="description"/>
+        <result column="status" property="status"/>
     </resultMap>
 
 </mapper>

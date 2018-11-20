@@ -1,9 +1,9 @@
 package com.dnp.test.modular.service.impl;
 
-import com.dnp.test.modular.entity.RoleResource;
-import com.dnp.test.modular.dao.RoleResourceMapper;
-import com.dnp.test.modular.service.RoleResourceService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import com.dnp.test.modular.dao.RoleResourceMapper;
+import com.dnp.test.modular.entity.RoleResource;
+import com.dnp.test.modular.service.RoleResourceService;
 import org.springframework.stereotype.Service;
 
 /**

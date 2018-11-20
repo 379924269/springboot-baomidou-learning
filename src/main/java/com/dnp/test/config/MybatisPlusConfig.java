@@ -22,15 +22,17 @@ public class MybatisPlusConfig {
 
     /**
      * sql注入器  逻辑删除插件
+     *
      * @return
      */
     @Bean
-    public ISqlInjector iSqlInjector(){
+    public ISqlInjector iSqlInjector() {
         return new LogicSqlInjector();
     }
 
     /**
      * sql性能分析插件，输出sql语句及所需时间
+     *
      * @return
      */
     @Bean
@@ -38,11 +40,13 @@ public class MybatisPlusConfig {
     public PerformanceInterceptor performanceInterceptor() {
         return new PerformanceInterceptor();
     }
+
     /**
      * 乐观锁插件
+     *
      * @return
      */
-    public OptimisticLockerInterceptor optimisticLockerInterceptor(){
+    public OptimisticLockerInterceptor optimisticLockerInterceptor() {
         return new OptimisticLockerInterceptor();
     }
 

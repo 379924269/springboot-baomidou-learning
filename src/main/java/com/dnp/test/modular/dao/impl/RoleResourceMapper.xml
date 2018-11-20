@@ -4,9 +4,9 @@
 
     <!-- 通用查询映射结果 -->
     <resultMap id="BaseResultMap" type="com.dnp.test.modular.entity.RoleResource">
-        <id column="id" property="id" />
-        <result column="role_id" property="roleId" />
-        <result column="resource_id" property="resourceId" />
+        <id column="id" property="id"/>
+        <result column="role_id" property="roleId"/>
+        <result column="resource_id" property="resourceId"/>
     </resultMap>
 
 </mapper>

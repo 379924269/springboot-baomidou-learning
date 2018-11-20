@@ -1,9 +1,9 @@
 package com.dnp.test.modular.service.impl;
 
-import com.dnp.test.modular.entity.SysLog;
-import com.dnp.test.modular.dao.SysLogMapper;
-import com.dnp.test.modular.service.SysLogService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import com.dnp.test.modular.dao.SysLogMapper;
+import com.dnp.test.modular.entity.SysLog;
+import com.dnp.test.modular.service.SysLogService;
 import org.springframework.stereotype.Service;
 
 /**

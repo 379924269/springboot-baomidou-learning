@@ -1,7 +1,7 @@
 package com.dnp.test.modular.service;
 
-import com.dnp.test.modular.entity.Organization;
 import com.baomidou.mybatisplus.extension.service.IService;
+import com.dnp.test.modular.entity.Organization;
 
 /**
  * <p>

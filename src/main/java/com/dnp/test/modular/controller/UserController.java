@@ -1,11 +1,15 @@
 package com.dnp.test.modular.controller;
 
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.baomidou.mybatisplus.core.metadata.IPage;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.dnp.test.modular.entity.User;
 import com.dnp.test.modular.service.UserService;
 import com.dnp.test.vo.PageVo;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
@@ -30,8 +34,13 @@ public class UserController {
     @RequestMapping(value = "", method = RequestMethod.GET)
     @ApiOperation(value = "查询所有用户", notes = "查询所有用户")
     public Object findAll(PageVo pageVo,
-                          @ApiParam(name = "search", value = "模糊查询字段", required = false) @RequestParam(required = false, defaultValue = "") String search) {
-        return null;
+                          @ApiParam(name = "search", value = "模糊查询字段") @RequestParam(required = false, defaultValue = "") String search) {
+        Page<User> page = new Page(pageVo.getOffset(), pageVo.getLimit());
+        QueryWrapper<User> queryWrapper = new QueryWrapper<>();
+        if (StringUtils.isNotEmpty(search)) {
+            queryWrapper.lambda().like(User::getName, search);
+        }
+        return userService.page(page, queryWrapper);
     }
 
 

@@ -60,10 +60,11 @@
             <artifactId>mybatis-plus-boot-starter</artifactId>
             <version>${mybatisplus.spring.boot.version}</version>
         </dependency>
+
         <dependency>
             <groupId>com.alibaba</groupId>
-            <artifactId>druid-spring-boot-starter</artifactId>
-            <version>${druid.version}</version>
+            <artifactId>druid</artifactId>
+            <version>1.1.9</version>
         </dependency>
 
         <dependency>
@@ -92,6 +93,21 @@
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-devtools</artifactId>
+        </dependency>
+
+        <!-- 使用Jasper引擎解析JSP -->
+        <dependency>
+            <groupId>org.apache.tomcat.embed</groupId>
+            <artifactId>tomcat-embed-jasper</artifactId>
+            <scope>provided</scope>
+        </dependency>
+        <!-- log4jdbc log4jdbc 是在 jdbc 层的一个日志框架，可以将占位符与参数全部合并在一起显示，
+		方便直接拷贝 sql 到 PLSQL Developer 等客户端直接执行，加快调试速度-->
+        <dependency>
+            <groupId>com.googlecode.log4jdbc</groupId>
+            <artifactId>log4jdbc</artifactId>
+            <version>1.2</version>
+            <scope>runtime</scope>
         </dependency>
     </dependencies>
 

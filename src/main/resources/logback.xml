@@ -1,0 +1,132 @@
+<!--
+LevelFilter： 级别过滤器，根据日志级别进行过滤。如果日志级别等于配置级别，过滤器会根据onMath 和 onMismatch接收或拒绝日志。有以下子节点：
+
+<level>:设置过滤级别
+
+<onMatch>:用于配置符合过滤条件的操作
+
+<onMismatch>:用于配置不符合过滤条件的操作
+-->
+
+<configuration scan="true" scanPeriod="10 seconds" debug="true">
+    <property resource="logback.properties"/>
+    <!-- 本项目的名字 -->
+    <contextName>${context.name}</contextName>
+    <appender name="console" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <pattern>${conversion.pattern}</pattern>
+        </encoder>
+    </appender>
+
+    <!--&lt;!&ndash; root file 日志 &ndash;&gt;-->
+    <!--<appender name="root-file-error"-->
+              <!--class="ch.qos.logback.core.rolling.RollingFileAppender">-->
+        <!--<file>${log.dir}/error.log</file>-->
+        <!--<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">-->
+            <!--<fileNamePattern>${log.dir}/error.%d{${rolling.policy.file.name.pattern}}%d{mmss}.%i.log.zip-->
+            <!--</fileNamePattern>-->
+            <!--<timeBasedFileNamingAndTriggeringPolicy-->
+                    <!--class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">-->
+                <!--<maxFileSize>${max.file.size}</maxFileSize>-->
+            <!--</timeBasedFileNamingAndTriggeringPolicy>-->
+            <!--<maxHistory>${max.history}</maxHistory>-->
+        <!--</rollingPolicy>-->
+        <!--<encoder>-->
+            <!--<pattern>${conversion.pattern}</pattern>-->
+        <!--</encoder>-->
+        <!--<filter class="ch.qos.logback.classic.filter.LevelFilter">-->
+            <!--<level>ERROR</level>-->
+            <!--<onMatch>ACCEPT</onMatch>-->
+            <!--<onMismatch>DENY</onMismatch>-->
+        <!--</filter>-->
+    <!--</appender>-->
+    <!--<appender name="root-file-warn"-->
+              <!--class="ch.qos.logback.core.rolling.RollingFileAppender">-->
+        <!--<file>${log.dir}/warn.log</file>-->
+        <!--<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">-->
+            <!--<fileNamePattern>${log.dir}/warn.%d{${rolling.policy.file.name.pattern}}%d{mmss}.%i.log.zip-->
+            <!--</fileNamePattern>-->
+            <!--<timeBasedFileNamingAndTriggeringPolicy-->
+                    <!--class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">-->
+                <!--<maxFileSize>${max.file.size}</maxFileSize>-->
+            <!--</timeBasedFileNamingAndTriggeringPolicy>-->
+            <!--<maxHistory>${max.history}</maxHistory>-->
+        <!--</rollingPolicy>-->
+        <!--<encoder>-->
+            <!--<pattern>${conversion.pattern}</pattern>-->
+        <!--</encoder>-->
+        <!--<filter class="ch.qos.logback.classic.filter.LevelFilter">-->
+            <!--<level>warn</level>-->
+            <!--<onMatch>ACCEPT</onMatch>-->
+            <!--<onMismatch>DENY</onMismatch>-->
+        <!--</filter>-->
+    <!--</appender>-->
+    <!--<appender name="root-file-info"-->
+              <!--class="ch.qos.logback.core.rolling.RollingFileAppender">-->
+        <!--<file>${log.dir}/info.log</file>-->
+        <!--<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">-->
+            <!--<fileNamePattern>${log.dir}/info.%d{${rolling.policy.file.name.pattern}}%d{mmss}.%i.log.zip-->
+            <!--</fileNamePattern>-->
+            <!--<timeBasedFileNamingAndTriggeringPolicy-->
+                    <!--class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">-->
+                <!--<maxFileSize>${max.file.size}</maxFileSize>-->
+            <!--</timeBasedFileNamingAndTriggeringPolicy>-->
+            <!--<maxHistory>${max.history}</maxHistory>-->
+        <!--</rollingPolicy>-->
+        <!--<encoder>-->
+            <!--<pattern>${conversion.pattern}</pattern>-->
+        <!--</encoder>-->
+        <!--<filter class="ch.qos.logback.classic.filter.LevelFilter">-->
+            <!--<level>INFO</level>-->
+            <!--<onMatch>ACCEPT</onMatch>-->
+            <!--<onMismatch>DENY</onMismatch>-->
+        <!--</filter>-->
+    <!--</appender>-->
+    <!--<appender name="root-file-debug"-->
+              <!--class="ch.qos.logback.core.rolling.RollingFileAppender">-->
+        <!--<file>${log.dir}/debug.log</file>-->
+        <!--<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">-->
+            <!--<fileNamePattern>${log.dir}/debug.%d{${rolling.policy.file.name.pattern}}%d{mmss}.%i.log.zip-->
+            <!--</fileNamePattern>-->
+            <!--<timeBasedFileNamingAndTriggeringPolicy-->
+                    <!--class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">-->
+                <!--<maxFileSize>${max.file.size}</maxFileSize>-->
+            <!--</timeBasedFileNamingAndTriggeringPolicy>-->
+            <!--<maxHistory>${max.history}</maxHistory>-->
+        <!--</rollingPolicy>-->
+        <!--<encoder>-->
+            <!--<pattern>${conversion.pattern}</pattern>-->
+        <!--</encoder>-->
+        <!--<filter class="ch.qos.logback.classic.filter.LevelFilter">-->
+            <!--<level>debug</level>-->
+            <!--<onMatch>ACCEPT</onMatch>-->
+            <!--<onMismatch>DENY</onMismatch>-->
+        <!--</filter>-->
+    <!--</appender>-->
+
+
+    <logger name="jdbc.connection" additivity="false" level="OFF">
+        <appender-ref ref="console"/>
+    </logger>
+    <logger name="jdbc.resultset" additivity="false" level="OFF">
+        <appender-ref ref="console"/>
+    </logger>
+    <logger name="jdbc.audit" additivity="false" level="OFF">
+        <appender-ref ref="console"/>
+    </logger>
+    <logger name="jdbc.sqlonly" additivity="false" level="OFF">
+        <appender-ref ref="console"/>
+    </logger>
+    <logger name="jdbc.sqltiming" additivity="false" level="INFO">
+        <appender-ref ref="console"/>
+    </logger>
+
+    <root level="${root.level}">
+        <appender-ref ref="console"/>
+        <!--<appender-ref ref="root-file-error"/>-->
+        <!--<appender-ref ref="root-file-warn"/>-->
+        <!--<appender-ref ref="root-file-info"/>-->
+        <!--<appender-ref ref="root-file-debug"/>-->
+    </root>
+
+</configuration>

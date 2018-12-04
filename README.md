@@ -49,6 +49,10 @@ public class MybatisPlusConfig {
 ```
 5、配置一下swaggerui 可以做简单的调试
 
+6、自定义数据库配置：
+
+7、生成mock测试：
+
 ## 项目运行
 1、自动生成代码
 2、运行命令：spring-boot:run 启动项目，web访问swaggerui地址：http://127.0.0.1/项目名称/swagger-ui.html

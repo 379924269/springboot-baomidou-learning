@@ -3,6 +3,7 @@ package com.dnp.test.modular.entity;
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.extension.activerecord.Model;
+import com.fasterxml.jackson.annotation.JsonFormat;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 
@@ -84,6 +85,7 @@ public class Organization extends Model<Organization> {
 
     @XmlAttribute
     @ApiModelProperty(value = "创建时间", dataType = "LocalDateTime")
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private LocalDateTime createTime;
 
 
@@ -185,17 +187,17 @@ public class Organization extends Model<Organization> {
         return this.id;
     }
 
-    @Override
-    public String toString() {
-        return "Organization{" +
-                "id=" + id +
-                ", name=" + name +
-                ", address=" + address +
-                ", code=" + code +
-                ", icon=" + icon +
-                ", pid=" + pid +
-                ", seq=" + seq +
-                ", createTime=" + createTime +
-                "}";
-    }
+//    @Override
+//    public String toString() {
+//        return "Organization{" +
+//                "id=" + id +
+//                ", name=" + name +
+//                ", address=" + address +
+//                ", code=" + code +
+//                ", icon=" + icon +
+//                ", pid=" + pid +
+//                ", seq=" + seq +
+//                ", createTime=" + createTime +
+//                "}";
+//    }
 }

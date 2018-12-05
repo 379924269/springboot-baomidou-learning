@@ -3,6 +3,7 @@ package com.dnp.test.vo;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import org.apache.commons.lang3.StringUtils;
+import org.hibernate.validator.constraints.Length;
 
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
@@ -19,11 +20,13 @@ public class PageVo implements Serializable {
 
     // 查询时排序方式，可选，默认descasc 升序 desc降序
     @XmlAttribute
-    @ApiModelProperty(value = "升序降序字段", dataType = "String")
+    @ApiModelProperty(value = "升序降序字段,如：casc 升序 desc降序", dataType = "String")
+    @Length(max = 3, message = "字段长度不能小于3")
     private String order;
     // 排序字段，可选，默认id
     @XmlAttribute
     @ApiModelProperty(value = "排序字段", dataType = "String")
+    @Length(max = 64)
     private String sort;
     // 查询偏移量，可选，默认0
     @XmlAttribute

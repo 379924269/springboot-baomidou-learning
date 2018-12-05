@@ -53,6 +53,9 @@ public class MybatisPlusConfig {
 
 7、生成mock测试：
 
+8、controller前端数据验证
+参考地址：https://www.cnblogs.com/NeverCtrl-C/p/8185576.html
+
 ## 项目运行
 1、自动生成代码
 2、运行命令：spring-boot:run 启动项目，web访问swaggerui地址：http://127.0.0.1/项目名称/swagger-ui.html

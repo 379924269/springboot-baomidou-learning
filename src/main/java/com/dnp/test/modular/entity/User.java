@@ -126,8 +126,6 @@ public class User extends Model<User> {
             ,
             String password
             ,
-            String salt
-            ,
             Integer sex
             ,
             Integer age
@@ -137,10 +135,6 @@ public class User extends Model<User> {
             Integer userType
             ,
             Integer status
-            ,
-            Integer organizationId
-            ,
-            LocalDateTime createTime
     ) {
         this.loginName = loginName;
         this.name = name;

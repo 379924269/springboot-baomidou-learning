@@ -6,6 +6,7 @@ import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.dnp.test.modular.entity.User;
 import com.dnp.test.modular.service.UserService;
 import com.dnp.test.vo.PageVo;
+import com.dnp.test.vo.UserRoleOrgVo;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
@@ -15,6 +16,7 @@ import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDateTime;
+import java.util.Map;
 
 /**
  * <p>
@@ -41,6 +43,14 @@ public class UserController {
             queryWrapper.lambda().like(User::getName, search);
         }
         return userService.page(page, queryWrapper);
+    }
+
+    @RequestMapping(value = "/findRelation", method = RequestMethod.GET)
+    @ApiOperation(value = "获取用户及其相关信息", notes = "获取用户及其相关信息")
+    public Object findRelation(PageVo pageVo,
+                          @ApiParam(name = "search", value = "模糊查询字段") @RequestParam(required = false, defaultValue = "") String search) {
+        Page<UserRoleOrgVo> page = new Page<>(pageVo.getOffset(), pageVo.getLimit());
+        return userService.selectUserListPage(page, search);
     }
 
 

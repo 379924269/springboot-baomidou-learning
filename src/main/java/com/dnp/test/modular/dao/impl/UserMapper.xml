@@ -18,4 +18,15 @@
         <result column="create_time" property="createTime"/>
     </resultMap>
 
+    <select id="selectUserListPage" resultType="com.dnp.test.vo.UserRoleOrgVo">
+        SELECT u.id AS userId, u.name AS username, u.password, u.phone, u.create_time AS createTime, u.organization_id
+        AS organizationId, o.name AS organizationName FROM `user` u LEFT JOIN `organization` o ON u.organization_id =
+        o.id
+        <where>
+            1 = 1
+            <if test="searchName != null and searchName != ''">
+                and u.name like '%${searchName}%'
+            </if>
+        </where>
+    </select>
 </mapper>

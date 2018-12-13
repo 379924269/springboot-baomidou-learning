@@ -8,5 +8,8 @@
         <result column="role_id" property="roleId"/>
         <result column="resource_id" property="resourceId"/>
     </resultMap>
-
+    <select id="list" resultType="com.dnp.test.vo.RoleResourceVo">
+    SELECT r.url, r2.name as roleName, r.method FROM role_resource rr LEFT JOIN  resource r ON rr.resource_id = r.id
+    LEFT JOIN role r2  ON rr.role_id = r2.id
+    </select>
 </mapper>

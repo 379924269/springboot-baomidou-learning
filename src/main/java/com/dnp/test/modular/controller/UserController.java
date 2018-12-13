@@ -36,7 +36,7 @@ public class UserController {
     @Autowired
     private UserService userService;
 
-    @RequestMapping(value = "", method = RequestMethod.GET)
+    @RequestMapping(value = "")
     @ApiOperation(value = "查询所有用户", notes = "查询所有用户")
     public Object findAll(@Valid PageVo pageVo,
                           @ApiParam(name = "search", value = "模糊查询字段") @RequestParam(required = false, defaultValue = "") String search) {

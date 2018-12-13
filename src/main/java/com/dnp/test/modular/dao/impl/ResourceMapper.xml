@@ -19,4 +19,11 @@
         <result column="method" property="method"/>
     </resultMap>
 
+    <select id="selectBatchIds" resultType="com.dnp.test.modular.entity.Resource">
+        SELECT * FROM resource r LEFT JOIN role_resource rr WHERE rr.role_id IN
+        <foreach item="role" index="index" collection="listRoles"
+                 open="(" separator="," close=")">
+            #{role.roleId}
+        </foreach>
+    </select>
 </mapper>

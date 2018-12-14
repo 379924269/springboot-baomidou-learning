@@ -13,7 +13,7 @@ import org.springframework.util.PathMatcher;
 import java.util.*;
 public class CustomSecurityMetadataSource implements FilterInvocationSecurityMetadataSource {
     private static final Logger logger = LoggerFactory.getLogger(CustomAccessDecisionManager.class);
-
+    //    代表需要管理的所有权限
     private Map<String, Collection<ConfigAttribute>> resourceMap = null;
     private PathMatcher pathMatcher = new AntPathMatcher();
 
@@ -32,12 +32,12 @@ public class CustomSecurityMetadataSource implements FilterInvocationSecurityMet
 
     private Map<String, Collection<ConfigAttribute>> loadResourceMatchAuthority() {
 
-        Map<String, Collection<ConfigAttribute>> map = new HashMap<String, Collection<ConfigAttribute>>();
+        Map<String, Collection<ConfigAttribute>> map = new HashMap<>();
 
         if(!roleResourceVos.isEmpty()){
             for (RoleResourceVo r :
                     roleResourceVos) {
-                Collection<ConfigAttribute> list = new ArrayList<ConfigAttribute>();
+                Collection<ConfigAttribute> list = new ArrayList<>();
                 ConfigAttribute config = new SecurityConfig(r.getRoleName());
                 list.add(config);
                 map.put(r.getUrl(), list);
@@ -51,6 +51,7 @@ public class CustomSecurityMetadataSource implements FilterInvocationSecurityMet
 
     }
 
+    //    判断请求是否在权限保护里面，如果是，会到权限断绝器（CustomAccessDecisionManager）判断用户是否有权限
     @Override
     public Collection<ConfigAttribute> getAttributes(Object object)
             throws IllegalArgumentException {

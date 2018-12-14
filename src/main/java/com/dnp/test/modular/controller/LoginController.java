@@ -7,10 +7,10 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 public class LoginController {
-    @RequestMapping("/login")
-    public String login(){
-        return "请登录";
-    }
+//    @RequestMapping("/login")
+//    public String login(){
+//        return "请登录";
+//    }
     @RequestMapping("/login/success")
     public String loginSuccess(){
         User o = (User)SecurityContextHolder.getContext().getAuthentication().getPrincipal();

@@ -1,4 +1,4 @@
-package com.dnp.test.modular.service.impl;
+package com.dnp.test.config;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.dnp.test.modular.entity.Role;

@@ -23,7 +23,6 @@ public class CustomAccessDecisionManager implements AccessDecisionManager {
         if (configAttributes == null) {
             return;
         }
-
         //config urlroles
         Iterator<ConfigAttribute> iterator = configAttributes.iterator();
 

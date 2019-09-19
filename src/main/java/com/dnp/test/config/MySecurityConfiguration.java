@@ -1,7 +1,6 @@
 package com.dnp.test.config;
 
 import com.dnp.test.modular.dao.RoleResourceMapper;
-import com.dnp.test.modular.service.impl.CustomUserDetailsService;
 import com.dnp.test.util.LoginSuccessHandler;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;

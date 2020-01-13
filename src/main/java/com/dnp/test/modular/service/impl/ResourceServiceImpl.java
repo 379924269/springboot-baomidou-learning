@@ -1,6 +1,5 @@
 package com.dnp.test.modular.service.impl;
 
-import com.baomidou.mybatisplus.core.conditions.Wrapper;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.dnp.test.modular.dao.ResourceMapper;
@@ -36,7 +35,7 @@ public class ResourceServiceImpl extends ServiceImpl<ResourceMapper, Resource> i
     @Override
     public List<Resource> findByUserName(String userName) {
         QueryWrapper<User> userQueryWrapper = new QueryWrapper<>();
-        userQueryWrapper.lambda().eq(User::getName, userName);
+        userQueryWrapper.lambda().eq(User::getUsername, userName);
         User user = this.userMapper.selectOne(userQueryWrapper);
 
         QueryWrapper<UserRole> queryWrapper = new QueryWrapper<>();

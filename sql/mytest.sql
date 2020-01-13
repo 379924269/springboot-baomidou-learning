@@ -251,7 +251,7 @@ DROP TABLE IF EXISTS `user`;
 CREATE TABLE IF NOT EXISTS `user` (
   `id` bigint(19) NOT NULL AUTO_INCREMENT COMMENT '主键id',
   `login_name` varchar(64) NOT NULL COMMENT '登陆名',
-  `name` varchar(64) NOT NULL COMMENT '用户名',
+  `username` varchar(64) NOT NULL COMMENT '用户名',
   `password` varchar(64) NOT NULL COMMENT '密码',
   `salt` varchar(36) DEFAULT NULL COMMENT '密码加密盐',
   `sex` tinyint(2) NOT NULL DEFAULT '0' COMMENT '性别',
@@ -268,7 +268,7 @@ CREATE TABLE IF NOT EXISTS `user` (
 # Dumping data for table my_new_ptt.user: ~4 rows (approximately)
 DELETE FROM `user`;
 /*!40000 ALTER TABLE `user` DISABLE KEYS */;
-INSERT INTO `user` (`id`, `login_name`, `name`, `password`, `salt`, `sex`, `age`, `phone`, `user_type`, `status`, `organization_id`, `create_time`) VALUES
+INSERT INTO `user` (`id`, `login_name`, `username`, `password`, `salt`, `sex`, `age`, `phone`, `user_type`, `status`, `organization_id`, `create_time`) VALUES
 	(1, 'admin', 'admin', ' e10adc3949ba59abbe56e057f20f883e', 'test', 0, 25, '18707173376', 0, 0, 1, '2015-12-06 13:14:05'),
 	(13, 'snoopy', 'snoopy', '05a671c66aefea124cc08b76ea6d30bb', 'test', 0, 25, '18707173376', 1, 0, 3, '2015-10-01 13:12:07'),
 	(14, 'dreamlu', 'dreamlu', '05a671c66aefea124cc08b76ea6d30bb', 'test', 0, 25, '18707173376', 1, 0, 5, '2015-10-11 23:12:58'),

@@ -4,6 +4,12 @@ dnp:
     username: root
     password: 123456
     driver-class-name: net.sf.log4jdbc.DriverSpy
+    filters: log4j,wall,mergeStat
+    type: com.alibaba.druid.pool.DruidDataSource
+  mvc:
+    view:
+      prefix: /WEB-INF/jsp/
+      suffix: .jsp
 
 ###################  mybatis-plus配置  ###################
 mybatis-plus:

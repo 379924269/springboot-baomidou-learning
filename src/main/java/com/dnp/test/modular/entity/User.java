@@ -6,6 +6,9 @@ import com.baomidou.mybatisplus.extension.activerecord.Model;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlAttribute;
@@ -49,7 +52,7 @@ public class User extends Model<User> {
 
     @XmlAttribute
     @ApiModelProperty(value = "用户名", dataType = "String")
-    private String name;
+    private String username;
     /**
      * 密码
      */
@@ -114,41 +117,16 @@ public class User extends Model<User> {
     @ApiModelProperty(value = "创建时间", dataType = "LocalDateTime")
     private LocalDateTime createTime;
 
-
     public User() {
     }
 
-
-    public User(
-            String loginName
-            ,
-            String name
-            ,
-            String password
-            ,
-            Integer sex
-            ,
-            Integer age
-            ,
-            String phone
-            ,
-            Integer userType
-            ,
-            Integer status
-    ) {
-        this.loginName = loginName;
-        this.name = name;
-        this.password = password;
-        this.salt = salt;
-        this.sex = sex;
-        this.age = age;
-        this.phone = phone;
-        this.userType = userType;
-        this.status = status;
-        this.organizationId = organizationId;
-        this.createTime = createTime;
+    public User(@Size(max = 20, message = ",字段长度小于20") @NotNull(message = "登录名称不能为空") String loginName, String name, @Pattern(regexp = "^.*(?=.{6,})(?=.*\\d)(?=.*[A-Z])(?=.*[a-z])(?=.*[!@#$%^&*? ]).*$",
+            message = ":密码长度至少6位，必须包含一个数字字母和特殊字符") String password, Integer sex, Integer age, String phone, Integer userType, Integer organizationId) {
     }
 
+    public String getUsername() {
+        return username;
+    }
 
     public Long getId() {
         return id;
@@ -166,13 +144,6 @@ public class User extends Model<User> {
         this.loginName = loginName;
     }
 
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
 
     public String getPassword() {
         return password;
@@ -251,21 +222,4 @@ public class User extends Model<User> {
         return this.id;
     }
 
-    @Override
-    public String toString() {
-        return "User{" +
-                "id=" + id +
-                ", loginName=" + loginName +
-                ", name=" + name +
-                ", password=" + password +
-                ", salt=" + salt +
-                ", sex=" + sex +
-                ", age=" + age +
-                ", phone=" + phone +
-                ", userType=" + userType +
-                ", status=" + status +
-                ", organizationId=" + organizationId +
-                ", createTime=" + createTime +
-                "}";
-    }
 }

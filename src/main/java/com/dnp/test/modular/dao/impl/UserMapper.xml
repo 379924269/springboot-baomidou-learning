@@ -6,7 +6,7 @@
     <resultMap id="BaseResultMap" type="com.dnp.test.modular.entity.User">
         <id column="id" property="id"/>
         <result column="login_name" property="loginName"/>
-        <result column="name" property="name"/>
+        <result column="username" property="username"/>
         <result column="password" property="password"/>
         <result column="salt" property="salt"/>
         <result column="sex" property="sex"/>
@@ -19,7 +19,7 @@
     </resultMap>
 
     <select id="selectUserListPage" resultType="com.dnp.test.vo.UserRoleOrgVo">
-        SELECT u.id AS userId, u.name AS username, u.password, u.phone, u.create_time AS createTime, u.organization_id
+        SELECT u.id AS userId, u.username AS username, u.password, u.phone, u.create_time AS createTime, u.organization_id
         AS organizationId, o.name AS organizationName FROM `user` u LEFT JOIN `organization` o ON u.organization_id =
         o.id
         <where>

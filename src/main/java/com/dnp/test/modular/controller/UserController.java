@@ -43,7 +43,7 @@ public class UserController {
         Page<User> page = new Page(pageVo.getOffset(), pageVo.getLimit());
         QueryWrapper<User> queryWrapper = new QueryWrapper<>();
         if (StringUtils.isNotEmpty(search)) {
-            queryWrapper.lambda().like(User::getName, search);
+            queryWrapper.lambda().like(User::getUsername, search);
         }
         return userService.page(page, queryWrapper);
     }

@@ -33,7 +33,7 @@ public class CustomUserDetailsService implements UserDetailsService {
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         QueryWrapper<User> queryWrapper = new QueryWrapper<>();
-        queryWrapper.lambda().eq(User::getName, username);
+        queryWrapper.lambda().eq(User::getUsername, username);
         User user = userService.getOne(queryWrapper);
 
         List<Role> roles = roleService.findByUsername(username);
@@ -46,6 +46,6 @@ public class CustomUserDetailsService implements UserDetailsService {
             }
         }
 
-        return new org.springframework.security.core.userdetails.User(user.getName(), user.getPassword(), true, true, true, true, authorities);
+        return new org.springframework.security.core.userdetails.User(user.getUsername(), user.getPassword(), true, true, true, true, authorities);
     }
 }

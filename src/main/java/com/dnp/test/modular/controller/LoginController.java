@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
  * Created by Administrator on 2018/11/29 0029.
  */
 @Controller
-public class loginController {
+public class LoginController {
 
     @RequestMapping("login")
     public String login() {
@@ -21,3 +21,4 @@ public class loginController {
         return "hello";
     }
 }
+

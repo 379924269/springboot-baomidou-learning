@@ -1,5 +1,6 @@
 package com.dnp.test.modular.controller;
 
+import com.dnp.test.constant.tips.ErrorTip;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
@@ -13,19 +14,22 @@ import org.springframework.web.bind.annotation.RestController;
 /**
  * Created by Administrator on 2018/11/29 0029.
  */
-@Api(value = "LoginController", description = "登录")
+@Api(value = "LoginController", description = "登录API")
 @RestController
 @Validated
-@RequestMapping(value = "/login", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+@RequestMapping(value = "", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
 public class LoginController {
 
-    @RequestMapping(value = "", method = RequestMethod.POST)
-    @ApiOperation(value = "用户登录")
-    public String login(@ApiParam(name = "username", value = "用户名")
-                        @RequestParam(required = false, name = "username") String username,
-                        @ApiParam(name = "password", value = "密码")
-                        @RequestParam(required = false, name = "password") String password) {
-        return "";
+    @RequestMapping(value = "/login", method = RequestMethod.POST)
+    @ApiOperation(value = "登录接口")
+    public void login(@ApiParam(name = "username", value = "用户名称", required = true, defaultValue = "admin") @RequestParam String username,
+                      @ApiParam(name = "password", value = "密码", required = true, defaultValue = "123456") @RequestParam String password) {
+    }
+
+    @RequestMapping(value = "/login", method = RequestMethod.GET)
+    @ApiOperation(value = "未登录接口（或叫登录界面跳转接口）", hidden = true)
+    public Object login() {
+        return new ErrorTip(500, "未登录");
     }
 }
 

@@ -1,5 +1,7 @@
 package com.dnp.test.config;
 
+import com.dnp.test.login.hander.MyAuthenctiationFailureHandler;
+import com.dnp.test.login.hander.MyAuthenticationSuccessHandler;
 import com.dnp.test.modular.dao.RoleResourceMapper;
 import com.dnp.test.util.LoginSuccessHandler;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,7 +21,6 @@ import org.springframework.security.crypto.password.PasswordEncoder;
  * Created by huazai on 2018/12/12.
  */
 @Configuration
-@Order(Integer.MAX_VALUE -7)
 public class MySecurityConfiguration  extends WebSecurityConfigurerAdapter{
     @Autowired
     @Qualifier("authenticationManagerBean")
@@ -31,33 +32,47 @@ public class MySecurityConfiguration  extends WebSecurityConfigurerAdapter{
     @Autowired
     private RoleResourceMapper roleResourceMapper;
 
+    @Autowired
+    private MyAuthenctiationFailureHandler myAuthenctiationFailureHandler;
+
+    @Autowired
+    private MyAuthenticationSuccessHandler myAuthenticationSuccessHandler;
+
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.formLogin()
                 .loginPage("/login")
-                .successForwardUrl("/login/success").permitAll()
+                .successHandler(myAuthenticationSuccessHandler)
+                .failureHandler(myAuthenctiationFailureHandler)
+                .permitAll()
                 .and().authorizeRequests()
                 .antMatchers("/images/**").permitAll()
-                .regexMatchers(".*swagger.*",".*v2.*",".*webjars.*").permitAll()
+                .regexMatchers(".*swagger.*", ".*v2.*", ".*webjars.*").permitAll()
                 .anyRequest().authenticated()
                 .and().sessionManagement().sessionCreationPolicy(SessionCreationPolicy.NEVER)
                 .and().logout().logoutSuccessUrl("/logout")
                 .and().csrf().disable();
     }
 
+//   自定义密码加密  不用加密
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-        auth.userDetailsService(customUserDetailsService).passwordEncoder(passwordEncoder());
+        auth.userDetailsService(customUserDetailsService).passwordEncoder(new PasswordEncoder() {
+            @Override
+            public String encode(CharSequence rawPassword) {
+                return (String) rawPassword;
+            }
+
+            @Override
+            public boolean matches(CharSequence rawPassword, String encodedPassword) {
+                return encodedPassword.equals(rawPassword);
+            }
+        });
     }
 
     @Bean
     public LoginSuccessHandler loginSuccessHandler(){
         return new LoginSuccessHandler();
-    }
-
-    @Bean
-    public PasswordEncoder passwordEncoder() {
-        return PasswordEncoderFactories.createDelegatingPasswordEncoder();
     }
 
     @Bean

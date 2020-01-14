@@ -1,5 +1,6 @@
 package com.dnp.test.modular.controller;
 
+import com.dnp.test.constant.tips.SuccessTip;
 import com.dnp.test.util.MyThread;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -22,29 +23,23 @@ import org.springframework.web.bind.annotation.*;
 public class ThreadTestController {
 
     @RequestMapping(value = "/threadTest", method = RequestMethod.GET)
-    @ApiOperation(value = "threadTest", notes = "修改用户")
+    @ApiOperation(value = "threadTest", notes = "单独起一个现场测试")
     public Object threadTest(@RequestParam("threadName") String threadName) {
         new MyThread(threadName).start();
-        return "success";
+        return new SuccessTip();
     }
 
     @RequestMapping(value = "/threadTest1", method = RequestMethod.GET)
-    @ApiOperation(value = "threadTest1", notes = "修改用户")
+    @ApiOperation(value = "threadTest1", notes = "直接controller 没处理完 看是否阻塞其他controller")
     public Object threadTest1(@RequestParam("threadName") String threadName) {
-        Thread thread = new Thread(() -> {
-            for (int j = 0; j < 10000; j++) {
-                try {
-                    Thread.sleep(2000);
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
-                System.out.println("j " + threadName + "= " + j);
+        for (int i = 0; i < 10000; i++) {
+            try {
+                Thread.sleep(1000);
+                System.out.println("threadName + i = " + threadName + i);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
             }
-        });
-
-        thread.setDaemon(true);
-        thread.setPriority(1);
-        thread.run();
+        }
         return "success";
     }
 

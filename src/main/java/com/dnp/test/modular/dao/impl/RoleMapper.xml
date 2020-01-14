@@ -13,6 +13,6 @@
 
 <select id="findByUsername" resultType="com.dnp.test.modular.entity.Role">
     SELECT * FROM role r LEFT JOIN user_role ur ON r.id = ur.role_id LEFT JOIN user u
-    ON ur.user_id = u.id WHERE u.name = #{username}
+    ON ur.user_id = u.id WHERE u.username = #{username}
 </select>
 </mapper>

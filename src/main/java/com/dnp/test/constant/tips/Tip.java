@@ -1,5 +1,7 @@
 package com.dnp.test.constant.tips;
 
+import org.json.JSONObject;
+
 /**
  * 返回给前台的提示（最终转化为json形式）
  *
@@ -25,5 +27,13 @@ public abstract class Tip {
 
     public void setMessage(String message) {
         this.message = message;
+    }
+
+    @Override
+    public String toString() {
+        JSONObject jsonObject = new JSONObject();
+        jsonObject.put("code", code);
+        jsonObject.put("message", message);
+        return jsonObject.toString();
     }
 }

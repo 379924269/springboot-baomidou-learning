@@ -1,5 +1,6 @@
 package com.dnp.test.config;
 
+import com.dnp.test.modular.dao.RoleResourceMapper;
 import com.dnp.test.vo.RoleResourceVo;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -8,6 +9,7 @@ import org.springframework.security.access.SecurityConfig;
 import org.springframework.security.web.FilterInvocation;
 import org.springframework.security.web.access.intercept.FilterInvocationSecurityMetadataSource;
 import org.springframework.util.AntPathMatcher;
+import org.springframework.util.ObjectUtils;
 import org.springframework.util.PathMatcher;
 
 import java.util.*;
@@ -17,20 +19,21 @@ public class CustomSecurityMetadataSource implements FilterInvocationSecurityMet
     private Map<String, Collection<ConfigAttribute>> resourceMap = null;
     private PathMatcher pathMatcher = new AntPathMatcher();
 
-    private List<RoleResourceVo> roleResourceVos;
+    private RoleResourceMapper roleResourceMapper;
 
     @Override
     public Collection<ConfigAttribute> getAllConfigAttributes() {
         return null;
     }
 
-    public CustomSecurityMetadataSource  (List<RoleResourceVo> roleResourceVos) {
+    public CustomSecurityMetadataSource  (RoleResourceMapper roleResourceMapper) {
         super();
-        this.roleResourceVos = roleResourceVos;
+        this.roleResourceMapper = roleResourceMapper;
         resourceMap = loadResourceMatchAuthority();
     }
 
     private Map<String, Collection<ConfigAttribute>> loadResourceMatchAuthority() {
+        List<RoleResourceVo> roleResourceVos = roleResourceMapper.list();
 
         Map<String, Collection<ConfigAttribute>> map = new HashMap<>();
 
@@ -57,10 +60,11 @@ public class CustomSecurityMetadataSource implements FilterInvocationSecurityMet
             throws IllegalArgumentException {
         String url = ((FilterInvocation) object).getRequestUrl();
 
-        logger.debug("request url is  " + url);
-
-       if(resourceMap == null)
+        Object updateResourceFlag =  ((FilterInvocation) object).getHttpRequest().getServletContext().getAttribute("updateResourceFlag");
+        if (!ObjectUtils.isEmpty(updateResourceFlag)) {
             resourceMap = loadResourceMatchAuthority();
+            ((FilterInvocation) object).getHttpRequest().getServletContext().removeAttribute("updateResourceFlag");
+        }
 
         Iterator<String> ite = resourceMap.keySet().iterator();
         while (ite.hasNext()) {

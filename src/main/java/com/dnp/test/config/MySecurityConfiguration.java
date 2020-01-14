@@ -86,7 +86,7 @@ public class MySecurityConfiguration  extends WebSecurityConfigurerAdapter{
 
     @Bean
     public CustomSecurityMetadataSource securityMetadataSource() {
-        return new CustomSecurityMetadataSource(roleResourceMapper.list());
+        return new CustomSecurityMetadataSource(roleResourceMapper);
     }
 
     @Bean

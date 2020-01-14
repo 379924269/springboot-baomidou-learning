@@ -10,6 +10,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
+
 /**
  * <p>
  * 角色资源  前端控制器
@@ -30,6 +32,12 @@ public class RoleResourceController {
     public Object findAll(PageVo pageVo,
                           @ApiParam(name = "search", value = "模糊查询字段", required = false) @RequestParam(required = false, defaultValue = "") String search) {
         return null;
+    }
+
+    @RequestMapping(value = "/addUpdateFlagInApplication", method = RequestMethod.GET)
+    @ApiOperation(value = "跟新application中的数据")
+    public void addUpdateFlagInApplication(HttpServletRequest request) {
+        request.getServletContext().setAttribute("updateResourceFlag", true);
     }
 
 

@@ -7,6 +7,11 @@ import com.dnp.test.modular.entity.User;
 import com.dnp.test.modular.service.UserService;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
+import org.springframework.test.web.servlet.ResultMatcher;
+import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
+import org.springframework.test.web.servlet.result.MockMvcResultHandlers;
+import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 
 import java.util.Map;
 
@@ -16,12 +21,31 @@ import java.util.Map;
 
 public class UserControllerTest extends Base {
 
-    @Autowired
-    private UserController userController;
+
+    private static final String FIND_BY_ID = "/user/1";
+    private static final String FIND_ALL = "/user";
 
     @Test
-    public void getById() {
-        userController.findById(1);
+    public void findById() throws Exception {
+        mockMvc.perform(MockMvcRequestBuilders
+                .get(FIND_BY_ID)   //请求接口
+                .contentType(MediaType.APPLICATION_JSON)   //请求contentType
+                .accept(MediaType.APPLICATION_JSON))        //接收类型
+                .andExpect(MockMvcResultMatchers.status().isOk())   //期望返回结果
+                .andDo(MockMvcResultHandlers.print())  //
+                .andReturn().getResponse().getContentAsString();
+    }
+
+    @Test
+    public void findAll() throws Exception {
+        mockMvc.perform(MockMvcRequestBuilders
+                .get(FIND_ALL)   //请求接口
+                .param("page")
+                .contentType(MediaType.APPLICATION_JSON)   //请求contentType
+                .accept(MediaType.APPLICATION_JSON))        //接收类型
+                .andExpect(MockMvcResultMatchers.status().isOk())   //期望返回结果
+                .andDo(MockMvcResultHandlers.print())  //
+                .andReturn().getResponse().getContentAsString();
     }
 
 }

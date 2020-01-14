@@ -39,12 +39,13 @@ public class UserController {
     @RequestMapping(value = "")
     @ApiOperation(value = "查询所有用户", notes = "查询所有用户")
     public Object findAll(@Valid PageVo pageVo,
-                          @ApiParam(name = "search", value = "模糊查询字段") @RequestParam(required = false, defaultValue = "") String search) {
+                          @ApiParam(name = "search", value = "username为模糊查询字段") @RequestParam(required = false, defaultValue = "") String search) {
         Page<User> page = new Page(pageVo.getOffset(), pageVo.getLimit());
         QueryWrapper<User> queryWrapper = new QueryWrapper<>();
         if (StringUtils.isNotEmpty(search)) {
             queryWrapper.lambda().like(User::getUsername, search);
         }
+        queryWrapper.lambda().orderByDesc(User::getId);
         return userService.page(page, queryWrapper);
     }
 

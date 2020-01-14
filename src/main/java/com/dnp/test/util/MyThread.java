@@ -1,4 +1,4 @@
-package com.dnp.test.modular.controller;
+package com.dnp.test.util;
 
 /**
  * Created by huazai on 2019/1/18.

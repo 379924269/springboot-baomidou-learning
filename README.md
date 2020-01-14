@@ -15,7 +15,7 @@
 
 ### 测试策略
 * 通过mock 测试service，[查看mock测试文件](src/main/test/com.dnp.test/base/Base.java)
-
+* [mockMvc的一些简介](https://www.cnblogs.com/ken-jl/p/9724814.html)
 ### 数据库文件
 * 查看[mysql数据库文件](sql/mytest.sql)
 
@@ -61,12 +61,9 @@ public class MybatisPlusConfig {
 ```
 简单的操作就是把baomidou自动生成代码的templetes拷贝到resources下，然后就可以自定义了
 ```
-5、配置一下swaggerui 可以做简单的调试
 
-6、自定义数据库配置：
-
-7、生成mock测试：
-
-8、SpringBoot08 请求方式、参数获取注解、参数验证、前后台属性名不一致问题、自定义参数验证注解、BeanUtils的使用
+5、SpringBoot08 请求方式、参数获取注解、参数验证、前后台属性名不一致问题、自定义参数验证注解、BeanUtils的使用
 [参考地址](https://www.cnblogs.com/NeverCtrl-C/p/8185576.html)
+
+6、mysql中的排序字段一般都是和前端商量号按那些字段排序，没有预先定义。
 

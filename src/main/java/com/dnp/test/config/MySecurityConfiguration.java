@@ -33,7 +33,9 @@ public class MySecurityConfiguration  extends WebSecurityConfigurerAdapter{
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        http.formLogin().successForwardUrl("/login/success").permitAll()
+        http.formLogin()
+                .loginPage("/login")
+                .successForwardUrl("/login/success").permitAll()
                 .and().authorizeRequests()
                 .antMatchers("/images/**").permitAll()
                 .regexMatchers(".*swagger.*",".*v2.*",".*webjars.*").permitAll()
